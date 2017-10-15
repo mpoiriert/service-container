@@ -1,11 +1,11 @@
 {
   "name": "@draw-js/service-container",
-  "description":"A Symfony2 inspired depdendency injection container for node",
-  "version": "0.0.11",
+  "description": "A Symfony2 inspired depdendency injection container for node",
+  "version": "0.1.0",
   "author": {
-    "name":"Brandon Eum"
+    "name": "Brandon Eum"
   },
-  "contributors":[],
+  "contributors": [],
   "repository": {
     "type": "git",
     "url": "git://github.com/linkshare/service-container.git"
@@ -13,7 +13,7 @@
   "main": "ServiceContainer.js",
   "directories": {
     "lib": "./lib",
-    "example":"./example"
+    "example": "./example"
   },
   "licenses": [
     {
@@ -21,13 +21,15 @@
       "url": "https://github.com/linkshare/service-container/blob/master/LICENSE"
     }
   ],
-  "engines" : { "node" : ">=0.8.17" },
+  "engines": {
+    "node": ">=0.8.17"
+  },
   "dependencies": {},
   "devDependencies": {
-    "chai":"latest",
-    "sinon":"latest",
-    "mocha":"latest",
-    "spears":"git://github.com/beum/spears-js.git",
-    "jscoverage":"latest"
+    "chai": "latest",
+    "sinon": "latest",
+    "mocha": "latest",
+    "spears": "git://github.com/beum/spears-js.git",
+    "jscoverage": "latest"
   }
 }
