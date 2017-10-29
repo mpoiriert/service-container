@@ -29,7 +29,7 @@ The Symfony 2 Guide Book provides a great [explanation](http://symfony.com/doc/c
 # Installation
 
 
-    npm install service-container
+    npm install @draw-js/service-container
 
 Or add to your package.json dependencies.
 
@@ -62,52 +62,29 @@ the argument that you specify, either another service or a JSON literal paramete
 Create a container like:
 
 ```javascript
-var ServiceContainer = require('service-container');
+const ServiceContainer = require('service-container');
 
-// Create an instance of the container with the environment option set
-// This will include both services.json and services_[ENV].json files to override
-// any environment-specific parameters
-var options = {
-  env: 'test',
-  ignoreNodeModulesDirectory: true
-};
-var container = ServiceContainer.buildContainer(__dirname, options);
+// Load your configuration file
+const container = ServiceContainer.buildContainer(__dirname + '/services.json');
 ```
-
-There are two available options:
-* `env` - Which will cause the builder to search for `services_[ENV].json` files
-* `ignoreNodeModulesDirectory` - Which will prevent a recursive search through your dependent modules
-
 
 Get an instance of a service like:
 
 ```javascript
 // Get an example mailer service
-var mailer = container.get('mailer');
+const mailer = container.get('mailer');
 mailer.sendMail('Hello');
 
 // Get a parameter
-var maxcount = container.getParameter('mailer.maxcount');
+const maxcount = container.getParameter('mailer.maxcount');
 ```
 
 The section below goes over how to configure and construct services.
 
 ## services.json
 
-When initializing the container, you'll pass it the root directory for it to search
-for the services.json files.  The Builder will recursively search through directories
-below the root directory to search for services.json files.  If the `env` option
-is specified then files named services_[ENV].json will also be parsed.  Allowing
-you to override any parameters setup earlier.
+When initializing the container, you'll pass the full path of the services.json file.
 
-The hierarchy of services and parameters are as follows:
-* services.json files at lower folder levels are overridden by those at higher levels
-* services.json files are overriden by services_[ENV].json files
-* parameters are loaded and overriden by any parameters in the parameters.json file (see below)
-
-This allows you to override the specifics of a module from the application level
-and allows you to override any parameter based on whether this is your dev, test,
-qa or production environment.
 
 ```javascript
 {
@@ -153,19 +130,7 @@ qa or production environment.
   new objects will be created everytime the user requests this service from the
   container.
 
-
-### parameters.json
-
-The service container will also load its configurations through files named
-`paramters.json`.  Only the parameters block is loaded from these files and they
-override any previously seen parameters.  This file is specifically meant to be
-out of version control and maintain deployment-specific details such as a DB user
-and password, or the log level of a specific environment, etc.  These are details
-that should be configured on the server level manually or through your configuration
-manager.
-
-
-### Importing Other JSON Service Configuration Files
+### Importing Other Service Configuration Files
 
 To support more complex service.json file organizations, the `"imports"` key allows
 any JSON file to be parsed like a services.json file.  In terms of service and parameter
@@ -173,10 +138,13 @@ hierarchy, the imports are at the same level as the file that they are found in.
 The imports are parsed top to bottom, and are all overridden by whatever content
 is in the services.json file.
 
+Since the imports is done via require, you can also imports file from another package or js file.
+
 
 ```javascript
 {
   "imports": [
+    "@scope/package-name/services.json",
     "../my_other_services.json",
     "./lib/stuff.json"
   ],
@@ -240,6 +208,7 @@ Included:
 
 
 ##TODO
+* fixed the test
 * tags
 * scoped services
 

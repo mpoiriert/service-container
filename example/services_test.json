@@ -1,5 +1,8 @@
 {
+  "imports": [
+    "./services.json"
+  ],
   "parameters": {
-    "messenger.file":"./MockMessenger"
+    "messenger.file": "./MockMessenger"
   }
 }

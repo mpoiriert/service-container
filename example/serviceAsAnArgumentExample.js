@@ -9,12 +9,12 @@
  * not through code.
  */
 
-var ServiceContainer, container, helloMessenger, worldMessenger, exclamationMessenger;
+let ServiceContainer, container;
 
 // Create a service container with this directory as the root - this will load
 // the services.json file from this directory and create service definitions
 ServiceContainer = require('../ServiceContainer');
-container = ServiceContainer.buildContainer(__dirname);
+container = ServiceContainer.buildContainer(__dirname + "/services.json");
 
 // Grab an instance of the messenger manager service
 messengerManager = container.get('messenger_manager');

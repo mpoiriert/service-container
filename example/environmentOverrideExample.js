@@ -8,18 +8,18 @@
  *
  */
 
-var ServiceContainer, container, helloMessenger, worldMessenger, exclamationMessenger;
+let ServiceContainer, container, helloMessenger, worldMessenger, exclamationMessenger;
 
 // Create a service container with this directory as the root - this will load
 // the services.json file from this directory and create service definitions
 // Passing the options as the second parameter with the env specified as "test"
 // will force the container to load services_test.json files
 ServiceContainer = require('../ServiceContainer');
-container = ServiceContainer.buildContainer(__dirname, {env: 'test'});
+container = ServiceContainer.buildContainer(__dirname + "/services_test.json");
 
 // Grab instances of the services - the underlying class will be different
-helloMessenger       = container.get('hello_messenger');
-worldMessenger       = container.get('world_messenger');
+helloMessenger = container.get('hello_messenger');
+worldMessenger = container.get('world_messenger');
 exclamationMessenger = container.get('exclamation_messenger');
 
 

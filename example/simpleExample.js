@@ -7,16 +7,16 @@
  * Loads the services from the services.json file in this folder.
  */
 
-var ServiceContainer, container, helloMessenger, worldMessenger, exclamationMessenger;
+let ServiceContainer, container, helloMessenger, worldMessenger, exclamationMessenger;
 
 // Create a service container with this directory as the root - this will load
 // the services.json file from this directory and create service definitions
 ServiceContainer = require('../ServiceContainer');
-container = ServiceContainer.buildContainer(__dirname);
+container = ServiceContainer.buildContainer(__dirname + '/services.json');
 
 // Grab instances of the services
-helloMessenger       = container.get('hello_messenger');
-worldMessenger       = container.get('world_messenger');
+helloMessenger = container.get('hello_messenger');
+worldMessenger = container.get('world_messenger');
 exclamationMessenger = container.get('exclamation_messenger');
 
 // Output messags to the screen.  The first prints "hello" the second prints "world"

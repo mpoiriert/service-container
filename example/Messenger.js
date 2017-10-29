@@ -1,7 +1,7 @@
 /**
  * Example class that logs messages to the console
  */
-var Messenger = function Messenger(msg) {
+let Messenger = function Messenger(msg) {
   this.message = msg || '';
 };
 
